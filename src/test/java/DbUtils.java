@@ -7,8 +7,8 @@ import java.util.Map;
 public class DbUtils {
 
     private static Connection connection;
+    private static final String DB_URL = "jdbc:mysql://10.4.5.160:3306/airline_db?allowPublicKeyRetrieval=true&useSSL=false";
 
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/airline_db";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "John@123"; // Change this!
 
