@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "e41f59e0-285e-43f1-ac41-024b6e9b4ea7",
+		"name": "Airline Reservation API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39137077"
+	},
+	"item": [
+		{
+			"name": "Create booking - success",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// This is the final and correct test script\r",
+							"\r",
+							"// Step 1: Immediately check if the required environment variable is set.\r",
+							"const helperURL = pm.environment.get(\"helperURL\");\r",
+							"if (!helperURL) {\r",
+							"    throw new Error(\"The 'helperURL' environment variable is not set. Please check your 'Airline Local DB' environment.\");\r",
+							"}\r",
+							"\r",
+							"// Step 2: Define the request to the helper API\r",
+							"const flightIdToTest = 1;\r",
+							"\r",
+							"const getFlightDataRequest = {\r",
+							"    url: helperURL + '/query',\r",
+							"    method: 'POST',\r",
+							"    header: 'Content-Type:application/json',\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({\r",
+							"            query: \"SELECT * FROM flights WHERE flight_id = ?\",\r",
+							"            params: [flightIdToTest]\r",
+							"        })\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"// Step 3: Run the asynchronous test\r",
+							"pm.test(\"Database Validation: Initial flight data is correct\", (done) => {\r",
+							"    // Send the request to our helper API\r",
+							"    pm.sendRequest(getFlightDataRequest, (error, response) => {\r",
+							"        // First, handle any potential network errors\r",
+							"        if (error) {\r",
+							"            console.error(\"Error sending request to helper API:\", error);\r",
+							"            throw new Error(\"Failed to send request to the helper API. Check the Postman Console for details.\");\r",
+							"        }\r",
+							"\r",
+							"        // Next, handle errors from the helper API itself (e.g., a 500 error)\r",
+							"        if (response.code !== 200) {\r",
+							"            console.error(\"Helper API returned a non-200 status:\", response.code, response.text());\r",
+							"            throw new Error(`Helper API responded with status ${response.code}. Check the Postman Console.`);\r",
+							"        }\r",
+							"\r",
+							"        // If all went well, parse the response and run the assertions\r",
+							"        const dbData = response.json();\r",
+							"\r",
+							"        pm.expect(dbData, `Should find exactly one record for flight_id ${flightIdToTest}`).to.have.lengthOf(1);\r",
+							"        pm.expect(dbData[0].flight_number, \"Flight number should match\").to.eql('AA101');\r",
+							"        pm.expect(dbData[0].available_seats, \"Available seats should be 150\").to.eql(150);\r",
+							"\r",
+							"        // Signal to Postman that our asynchronous test is complete\r",
+							"        done();\r",
+							"    });\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"flightId\": 1,\r\n    \"passengerDetails\": {\r\n        \"firstName\": \"Test\",\r\n        \"lastName\": \"User\",\r\n        \"email\": \"test.user@example.com\",\r\n        \"passportNumber\": \"C98765432\"\r\n    },\r\n    \"paymentInfo\": {\r\n        \"cardNumber\": \"1234-5678-9012-3456\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/v1/bookings",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"bookings"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
