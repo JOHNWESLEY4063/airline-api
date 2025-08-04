@@ -15,10 +15,20 @@ public class DbUtils {
     public static Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()) {
             try {
+                // --- ADD THIS BLOCK ---
+                // Wait for 5 seconds to give the DB time to initialize
+                System.out.println("Waiting for DB to be ready...");
+                Thread.sleep(5000);
+                // --------------------
+
                 connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             } catch (SQLException e) {
                 System.err.println("Database connection failed!");
                 throw e;
+            } catch (InterruptedException e) {
+                // This is for the Thread.sleep()
+                Thread.currentThread().interrupt();
+                throw new SQLException("Test was interrupted while waiting for DB.", e);
             }
         }
         return connection;
