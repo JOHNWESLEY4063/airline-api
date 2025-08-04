@@ -26,8 +26,8 @@ pipeline {
     post {
         always {
             echo 'Archiving test results...'
-            // Archive the improved TestNG HTML report
-            archiveArtifacts artifacts: 'target/surefire-reports/index.html', allowEmptyArchive: true
+            // Archive the beautiful Extent Report
+            archiveArtifacts artifacts: 'target/ExtentReport.html', allowEmptyArchive: true
         }
     }
 }
