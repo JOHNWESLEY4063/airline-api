@@ -26,7 +26,8 @@ pipeline {
     post {
         always {
             echo 'Archiving test results...'
-            archiveArtifacts artifacts: 'target/surefire-reports/emailable-report.html', allowEmptyArchive: true
+            // Archive the improved TestNG HTML report
+            archiveArtifacts artifacts: 'target/surefire-reports/index.html', allowEmptyArchive: true
         }
     }
 }
