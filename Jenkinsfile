@@ -10,15 +10,15 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the project...'
-                // Use 'sh' for Linux/macOS
-                sh 'mvn compile'
+                // Use 'bat' for Windows
+                bat 'mvn compile'
             }
         }
         stage('Test') {
             steps {
                 echo 'Running tests...'
-                // Use 'sh' for Linux/macOS
-                sh 'mvn test'
+                // Use 'bat' for Windows
+                bat 'mvn test'
             }
         }
     }
