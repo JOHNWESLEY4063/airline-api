@@ -3,12 +3,12 @@ const mysql = require('mysql2/promise');
 const app = express();
 app.use(express.json());
 
-// --- IMPORTANT ---
-// Make sure the password matches the one you set for your MySQL root user.
+// --- UPDATED CONFIGURATION ---
+// host is now the name of the MySQL service defined in docker-compose.yml
 const dbConfig = {
-    host: 'localhost',
+    host: 'mysql_db',
     user: 'root',
-    password: 'John@123', // Change this if your password is different
+    password: 'John@123', // Must match the value in docker-compose.yml
     database: 'airline_db'
 };
 
