@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: TestSuite
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 13.91 s <<< FAILURE! -- in TestSuite
-AirlineTests.testCreateBookingEndToEnd -- Time elapsed: 7.939 s <<< FAILURE!
+Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 17.58 s <<< FAILURE! -- in TestSuite
+AirlineTests.testCreateBookingEndToEnd -- Time elapsed: 8.252 s <<< FAILURE!
 com.mysql.cj.jdbc.exceptions.CommunicationsException: 
 Communications link failure
 
@@ -15,8 +15,8 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:613)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:199)
-	at DbUtils.getConnection(DbUtils.java:24)
-	at DbUtils.executeQuery(DbUtils.java:40)
+	at DbUtils.getConnection(DbUtils.java:23)
+	at DbUtils.executeQuery(DbUtils.java:37)
 	at AirlineTests.testCreateBookingEndToEnd(AirlineTests.java:30)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
@@ -63,19 +63,18 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:980)
 	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:851)
 	... 38 more
-Caused by: java.net.UnknownHostException: No such host is known (mysql_db)
-	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
-	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Inet6AddressImpl.java:52)
-	at java.base/java.net.InetAddress$PlatformResolver.lookupByName(InetAddress.java:1128)
-	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1697)
-	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:1056)
-	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1687)
-	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1568)
-	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:121)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.base/sun.nio.ch.Net.connect0(Native Method)
+	at java.base/sun.nio.ch.Net.connect(Net.java:535)
+	at java.base/sun.nio.ch.Net.connect(Net.java:524)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:574)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:282)
+	at java.base/java.net.Socket.connect(Socket.java:665)
+	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:144)
 	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:53)
 	... 41 more
 
-AirlineTests.testDatabaseConnectionAndInitialData -- Time elapsed: 5.011 s <<< FAILURE!
+AirlineTests.testDatabaseConnectionAndInitialData -- Time elapsed: 8.010 s <<< FAILURE!
 com.mysql.cj.jdbc.exceptions.CommunicationsException: 
 Communications link failure
 
@@ -88,8 +87,8 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:613)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:199)
-	at DbUtils.getConnection(DbUtils.java:24)
-	at DbUtils.executeQuery(DbUtils.java:40)
+	at DbUtils.getConnection(DbUtils.java:23)
+	at DbUtils.executeQuery(DbUtils.java:37)
 	at AirlineTests.testDatabaseConnectionAndInitialData(AirlineTests.java:14)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
@@ -136,11 +135,14 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:980)
 	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:851)
 	... 38 more
-Caused by: java.net.UnknownHostException: mysql_db
-	at java.base/java.net.InetAddress$CachedLookup.get(InetAddress.java:905)
-	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1687)
-	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1568)
-	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:121)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.base/sun.nio.ch.Net.connect0(Native Method)
+	at java.base/sun.nio.ch.Net.connect(Net.java:535)
+	at java.base/sun.nio.ch.Net.connect(Net.java:524)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:574)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:282)
+	at java.base/java.net.Socket.connect(Socket.java:665)
+	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:144)
 	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:53)
 	... 41 more
 

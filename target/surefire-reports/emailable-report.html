@@ -9,9 +9,9 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">Airline Test Suite</th></tr>
-<tr><td><a href="#t0">Database Validation Tests</a></td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num attn">2</td><td class="num">13,145</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Database Validation Tests</a></td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num attn">2</td><td class="num">16,595</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Airline Test Suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Database Validation Tests &#8212; failed</th></tr><tr class="failedeven"><td rowspan="2">AirlineTests</td><td><a href="#m0">testCreateBookingEndToEnd</a></td><td rowspan="1">1761645940227</td><td rowspan="1">7917</td></tr><tr class="failedeven"><td><a href="#m1">testDatabaseConnectionAndInitialData</a></td><td rowspan="1">1761645948168</td><td rowspan="1">5007</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Airline Test Suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Database Validation Tests &#8212; failed</th></tr><tr class="failedeven"><td rowspan="2">AirlineTests</td><td><a href="#m0">testCreateBookingEndToEnd</a></td><td rowspan="1">1761647858781</td><td rowspan="1">8233</td></tr><tr class="failedeven"><td><a href="#m1">testDatabaseConnectionAndInitialData</a></td><td rowspan="1">1761647867038</td><td rowspan="1">8006</td></tr></tbody>
 </table>
 <h2>Database Validation Tests</h2><h3 id="m0">AirlineTests#testCreateBookingEndToEnd</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
 
@@ -24,8 +24,8 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:613)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:199)
-	at DbUtils.getConnection(DbUtils.java:24)
-	at DbUtils.executeQuery(DbUtils.java:40)
+	at DbUtils.getConnection(DbUtils.java:23)
+	at DbUtils.executeQuery(DbUtils.java:37)
 	at AirlineTests.testCreateBookingEndToEnd(AirlineTests.java:30)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
 Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
@@ -40,15 +40,14 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:980)
 	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:851)
 	... 38 more
-Caused by: java.net.UnknownHostException: No such host is known (mysql_db)
-	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
-	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Inet6AddressImpl.java:52)
-	at java.base/java.net.InetAddress$PlatformResolver.lookupByName(InetAddress.java:1128)
-	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1697)
-	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:1056)
-	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1687)
-	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1568)
-	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:121)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.base/sun.nio.ch.Net.connect0(Native Method)
+	at java.base/sun.nio.ch.Net.connect(Net.java:535)
+	at java.base/sun.nio.ch.Net.connect(Net.java:524)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:574)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:282)
+	at java.base/java.net.Socket.connect(Socket.java:665)
+	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:144)
 	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:53)
 	... 41 more
 ... Removed 32 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
@@ -63,8 +62,8 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:613)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:199)
-	at DbUtils.getConnection(DbUtils.java:24)
-	at DbUtils.executeQuery(DbUtils.java:40)
+	at DbUtils.getConnection(DbUtils.java:23)
+	at DbUtils.executeQuery(DbUtils.java:37)
 	at AirlineTests.testDatabaseConnectionAndInitialData(AirlineTests.java:14)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
 Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
@@ -79,11 +78,14 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:980)
 	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:851)
 	... 38 more
-Caused by: java.net.UnknownHostException: mysql_db
-	at java.base/java.net.InetAddress$CachedLookup.get(InetAddress.java:905)
-	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1687)
-	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1568)
-	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:121)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.base/sun.nio.ch.Net.connect0(Native Method)
+	at java.base/sun.nio.ch.Net.connect(Net.java:535)
+	at java.base/sun.nio.ch.Net.connect(Net.java:524)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:574)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:282)
+	at java.base/java.net.Socket.connect(Socket.java:665)
+	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:144)
 	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:53)
 	... 41 more
 ... Removed 32 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>

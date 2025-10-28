@@ -7,8 +7,8 @@ import java.util.Map;
 public class DbUtils {
 
     private static Connection connection;
-    // FINAL FIX: Use localhost and the custom mapped Docker port (3308)
-    private static final String DB_URL = "jdbc:mysql://localhost:3308/airline_db?allowPublicKeyRetrieval=true&useSSL=false";
+    // FINAL ATTEMPT: Using 127.0.0.1 instead of localhost
+    private static final String DB_URL = "jdbc:mysql://127.0.0.1:3308/airline_db?allowPublicKeyRetrieval=true&useSSL=false";
 
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "John@123";
@@ -17,7 +17,7 @@ public class DbUtils {
         if (connection == null || connection.isClosed()) {
             try {
                 // Increased wait time for better reliability
-                System.out.println("Waiting for DB to be ready at localhost:3308...");
+                System.out.println("Waiting for DB to be ready at 127.0.0.1:3308...");
                 Thread.sleep(8000);
 
                 connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);

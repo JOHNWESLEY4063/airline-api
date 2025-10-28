@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary"></span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Oct 28, 2025 03:35:40 pm</span></a>
+<a href="#"><span class="badge badge-primary">Oct 28, 2025 04:07:38 pm</span></a>
 </li>
 </ul>
 </div>
@@ -86,7 +86,7 @@
           <div class="test-detail">
             <p class="name">testCreateBookingEndToEnd</p>
             <p class="text-sm">
-              <span>3:35:40 pm</span> / <span>00:00:07:926</span>
+              <span>4:07:38 pm</span> / <span>00:00:08:241</span>
               <span class="badge fail-bg log float-right">Fail</span>
             </p>
           </div>
@@ -95,9 +95,9 @@
 <div class="p-v-10">
 <div class="info">
 <h5 class="test-status text-fail">testCreateBookingEndToEnd</h5>
-<span class='badge badge-success'>10.28.2025 3:35:40 pm</span>
-<span class='badge badge-danger'>10.28.2025 3:35:48 pm</span>
-<span class='badge badge-default'>00:00:07:926</span>
+<span class='badge badge-success'>10.28.2025 4:07:38 pm</span>
+<span class='badge badge-danger'>10.28.2025 4:07:47 pm</span>
+<span class='badge badge-default'>00:00:08:241</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
 <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
@@ -110,14 +110,14 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log fail-bg">Fail</span></td>
-        <td>3:35:48 pm</td>
+        <td>4:07:47 pm</td>
         <td>
           Test failed
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log fail-bg">Fail</span></td>
-        <td>3:35:48 pm</td>
+        <td>4:07:47 pm</td>
         <td>
           <textarea readonly class="code-block">com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
 
@@ -130,8 +130,8 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:613)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:199)
-	at DbUtils.getConnection(DbUtils.java:24)
-	at DbUtils.executeQuery(DbUtils.java:40)
+	at DbUtils.getConnection(DbUtils.java:23)
+	at DbUtils.executeQuery(DbUtils.java:37)
 	at AirlineTests.testCreateBookingEndToEnd(AirlineTests.java:30)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
@@ -178,15 +178,14 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:980)
 	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:851)
 	... 38 more
-Caused by: java.net.UnknownHostException: No such host is known (mysql_db)
-	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
-	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Inet6AddressImpl.java:52)
-	at java.base/java.net.InetAddress$PlatformResolver.lookupByName(InetAddress.java:1128)
-	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1697)
-	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:1056)
-	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1687)
-	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1568)
-	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:121)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.base/sun.nio.ch.Net.connect0(Native Method)
+	at java.base/sun.nio.ch.Net.connect(Net.java:535)
+	at java.base/sun.nio.ch.Net.connect(Net.java:524)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:574)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:282)
+	at java.base/java.net.Socket.connect(Socket.java:665)
+	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:144)
 	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:53)
 	... 41 more
 </textarea>
@@ -205,7 +204,7 @@ Caused by: java.net.UnknownHostException: No such host is known (mysql_db)
           <div class="test-detail">
             <p class="name">testDatabaseConnectionAndInitialData</p>
             <p class="text-sm">
-              <span>3:35:48 pm</span> / <span>00:00:05:011</span>
+              <span>4:07:47 pm</span> / <span>00:00:08:008</span>
               <span class="badge fail-bg log float-right">Fail</span>
             </p>
           </div>
@@ -214,9 +213,9 @@ Caused by: java.net.UnknownHostException: No such host is known (mysql_db)
 <div class="p-v-10">
 <div class="info">
 <h5 class="test-status text-fail">testDatabaseConnectionAndInitialData</h5>
-<span class='badge badge-success'>10.28.2025 3:35:48 pm</span>
-<span class='badge badge-danger'>10.28.2025 3:35:53 pm</span>
-<span class='badge badge-default'>00:00:05:011</span>
+<span class='badge badge-success'>10.28.2025 4:07:47 pm</span>
+<span class='badge badge-danger'>10.28.2025 4:07:55 pm</span>
+<span class='badge badge-default'>00:00:08:008</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=2</span>
 <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
 <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
@@ -229,14 +228,14 @@ Caused by: java.net.UnknownHostException: No such host is known (mysql_db)
   <tbody>
       <tr class="event-row">
         <td><span class="badge log fail-bg">Fail</span></td>
-        <td>3:35:53 pm</td>
+        <td>4:07:55 pm</td>
         <td>
           Test failed
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log fail-bg">Fail</span></td>
-        <td>3:35:53 pm</td>
+        <td>4:07:55 pm</td>
         <td>
           <textarea readonly class="code-block">com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
 
@@ -249,8 +248,8 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:613)
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:199)
-	at DbUtils.getConnection(DbUtils.java:24)
-	at DbUtils.executeQuery(DbUtils.java:40)
+	at DbUtils.getConnection(DbUtils.java:23)
+	at DbUtils.executeQuery(DbUtils.java:37)
 	at AirlineTests.testDatabaseConnectionAndInitialData(AirlineTests.java:14)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
@@ -297,11 +296,14 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:980)
 	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:851)
 	... 38 more
-Caused by: java.net.UnknownHostException: mysql_db
-	at java.base/java.net.InetAddress$CachedLookup.get(InetAddress.java:905)
-	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1687)
-	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1568)
-	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:121)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.base/sun.nio.ch.Net.connect0(Native Method)
+	at java.base/sun.nio.ch.Net.connect(Net.java:535)
+	at java.base/sun.nio.ch.Net.connect(Net.java:524)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:574)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:282)
+	at java.base/java.net.Socket.connect(Socket.java:665)
+	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:144)
 	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:53)
 	... 41 more
 </textarea>
@@ -354,14 +356,14 @@ Caused by: java.net.UnknownHostException: mysql_db
 <tbody>
 <tr class="tag-test-status" status="fail">
 <td><span class="badge log fail-bg">Fail</span></td>
-<td>15:35:40 pm</td>
+<td>16:07:38 pm</td>
 <td>
 <a href="#" class="linked" test-id='1' id='1'>testCreateBookingEndToEnd</a>
 </td>
 </tr>
 <tr class="tag-test-status" status="fail">
 <td><span class="badge log fail-bg">Fail</span></td>
-<td>15:35:48 pm</td>
+<td>16:07:47 pm</td>
 <td>
 <a href="#" class="linked" test-id='2' id='2'>testDatabaseConnectionAndInitialData</a>
 </td>
@@ -383,13 +385,13 @@ Caused by: java.net.UnknownHostException: mysql_db
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Oct 28, 2025 03:35:40 pm</h3>
+<h3>Oct 28, 2025 04:07:38 pm</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Oct 28, 2025 03:35:53 pm</h3>
+<h3>Oct 28, 2025 04:07:55 pm</h3>
 </div></div>
 </div>
 <div class="col-md-3">
@@ -459,7 +461,7 @@ Caused by: java.net.UnknownHostException: mysql_db
 </div></div>
 <script>
 var timeline = {
-"testCreateBookingEndToEnd":7.926,"testDatabaseConnectionAndInitialData":5.011
+"testCreateBookingEndToEnd":8.241,"testDatabaseConnectionAndInitialData":8.008
 };
 </script>
 <div class="row">
