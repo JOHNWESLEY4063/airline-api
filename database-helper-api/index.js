@@ -3,12 +3,14 @@ const mysql = require('mysql2/promise');
 const app = express();
 app.use(express.json());
 
-// --- UPDATED CONFIGURATION ---
-// host is now the name of the MySQL service defined in docker-compose.yml
+// --- IMPORTANT ---
+// Node.js running on the host must connect to the Docker container via localhost
+// and the mapped external port (3308).
 const dbConfig = {
-    host: 'mysql_db',
+    host: 'localhost',
+    port: 3308, // The port mapped in docker-compose.yml
     user: 'root',
-    password: 'John@123', // Must match the value in docker-compose.yml
+    password: 'John@123',
     database: 'airline_db'
 };
 
@@ -30,11 +32,12 @@ app.post('/query', async (req, res) => {
 
     try {
         const dbPool = await getPool();
-        // The fix is here: Use an empty array [] as the default for params.
+        // Use an empty array [] as the default for params for prepared statements
         const [rows] = await dbPool.execute(query, params || []);
         res.status(200).json(rows);
     } catch (error) {
         console.error('Database query failed:', error);
+        // Return error details to the client for debugging
         res.status(500).json({ error: 'Database query failed', details: error.message });
     }
 });
