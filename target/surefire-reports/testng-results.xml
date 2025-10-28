@@ -2,12 +2,12 @@
 <testng-results ignored="0" total="2" passed="0" failed="2" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-10-28T16:07:38 IST" name="Airline Test Suite" finished-at="2025-10-28T16:07:55 IST" duration-ms="16595">
+  <suite started-at="2025-10-28T16:11:00 IST" name="Airline Test Suite" finished-at="2025-10-28T16:11:17 IST" duration-ms="16418">
     <groups>
     </groups>
-    <test started-at="2025-10-28T16:07:38 IST" name="Database Validation Tests" finished-at="2025-10-28T16:07:55 IST" duration-ms="16595">
+    <test started-at="2025-10-28T16:11:00 IST" name="Database Validation Tests" finished-at="2025-10-28T16:11:17 IST" duration-ms="16418">
       <class name="AirlineTests">
-        <test-method signature="testCreateBookingEndToEnd()[pri:0, instance:AirlineTests@14d3bc22]" started-at="2025-10-28T16:07:38 IST" name="testCreateBookingEndToEnd" finished-at="2025-10-28T16:07:47 IST" duration-ms="8233" status="FAIL">
+        <test-method signature="testCreateBookingEndToEnd()[pri:0, instance:AirlineTests@14d3bc22]" started-at="2025-10-28T16:11:00 IST" name="testCreateBookingEndToEnd" finished-at="2025-10-28T16:11:08 IST" duration-ms="8165" status="FAIL">
           <exception class="com.mysql.cj.jdbc.exceptions.CommunicationsException">
             <message>
               <![CDATA[Communications link failure
@@ -90,7 +90,7 @@ at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateBookingEndToEnd -->
-        <test-method signature="testDatabaseConnectionAndInitialData()[pri:0, instance:AirlineTests@14d3bc22]" started-at="2025-10-28T16:07:47 IST" name="testDatabaseConnectionAndInitialData" finished-at="2025-10-28T16:07:55 IST" duration-ms="8006" status="FAIL">
+        <test-method signature="testDatabaseConnectionAndInitialData()[pri:0, instance:AirlineTests@14d3bc22]" started-at="2025-10-28T16:11:08 IST" name="testDatabaseConnectionAndInitialData" finished-at="2025-10-28T16:11:16 IST" duration-ms="8006" status="FAIL">
           <exception class="com.mysql.cj.jdbc.exceptions.CommunicationsException">
             <message>
               <![CDATA[Communications link failure
@@ -173,7 +173,7 @@ at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDatabaseConnectionAndInitialData -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:AirlineTests@14d3bc22]" started-at="2025-10-28T16:07:55 IST" name="tearDown" finished-at="2025-10-28T16:07:55 IST" duration-ms="8" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:AirlineTests@14d3bc22]" started-at="2025-10-28T16:11:17 IST" name="tearDown" finished-at="2025-10-28T16:11:17 IST" duration-ms="8" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->

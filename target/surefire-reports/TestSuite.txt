@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: TestSuite
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 17.58 s <<< FAILURE! -- in TestSuite
-AirlineTests.testCreateBookingEndToEnd -- Time elapsed: 8.252 s <<< FAILURE!
+Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 17.21 s <<< FAILURE! -- in TestSuite
+AirlineTests.testCreateBookingEndToEnd -- Time elapsed: 8.180 s <<< FAILURE!
 com.mysql.cj.jdbc.exceptions.CommunicationsException: 
 Communications link failure
 
@@ -74,7 +74,7 @@ Caused by: java.net.ConnectException: Connection refused: connect
 	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:53)
 	... 41 more
 
-AirlineTests.testDatabaseConnectionAndInitialData -- Time elapsed: 8.010 s <<< FAILURE!
+AirlineTests.testDatabaseConnectionAndInitialData -- Time elapsed: 8.012 s <<< FAILURE!
 com.mysql.cj.jdbc.exceptions.CommunicationsException: 
 Communications link failure
 

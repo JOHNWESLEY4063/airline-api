@@ -3,9 +3,7 @@ const mysql = require('mysql2/promise');
 const app = express();
 app.use(express.json());
 
-// --- FINAL CONFIGURATION ---
-// Node.js running on the host must connect to the Docker container via localhost
-// and the mapped external port (3308).
+// FINAL CONFIGURATION: Node.js running on the host connects via localhost:3308
 const dbConfig = {
     host: 'localhost',
     port: 3308, // The port mapped in docker-compose.yml

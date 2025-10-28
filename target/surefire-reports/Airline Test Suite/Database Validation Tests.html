@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>0/2/0</td>
 </tr><tr>
-<td>Started on:</td><td>Tue Oct 28 16:07:38 IST 2025</td>
+<td>Started on:</td><td>Tue Oct 28 16:11:00 IST 2025</td>
 </tr>
-<tr><td>Total time:</td><td>16 seconds (16595 ms)</td>
+<tr><td>Total time:</td><td>16 seconds (16418 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,7 +76,7 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='AirlineTests.testDatabaseConnectionAndInitialData()'><b>testDatabaseConnectionAndInitialData</b><br>Test class: AirlineTests</td>
+<td title='AirlineTests.testCreateBookingEndToEnd()'><b>testCreateBookingEndToEnd</b><br>Test class: AirlineTests</td>
 <td><div><pre>com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
 
 The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
@@ -90,7 +90,7 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:199)
 	at DbUtils.getConnection(DbUtils.java:23)
 	at DbUtils.executeQuery(DbUtils.java:37)
-	at AirlineTests.testDatabaseConnectionAndInitialData(AirlineTests.java:14)
+	at AirlineTests.testCreateBookingEndToEnd(AirlineTests.java:30)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
 Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
 
@@ -114,8 +114,8 @@ Caused by: java.net.ConnectException: Connection refused: connect
 	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:144)
 	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:53)
 	... 41 more
-... Removed 32 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace746115872", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace746115872'><pre>com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+... Removed 32 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace864852424", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace864852424'><pre>com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
 
 The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
 	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:165)
@@ -128,7 +128,7 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:199)
 	at DbUtils.getConnection(DbUtils.java:23)
 	at DbUtils.executeQuery(DbUtils.java:37)
-	at AirlineTests.testDatabaseConnectionAndInitialData(AirlineTests.java:14)
+	at AirlineTests.testCreateBookingEndToEnd(AirlineTests.java:30)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -188,7 +188,7 @@ Caused by: java.net.ConnectException: Connection refused: connect
 <td>8</td>
 <td>AirlineTests@14d3bc22</td></tr>
 <tr>
-<td title='AirlineTests.testCreateBookingEndToEnd()'><b>testCreateBookingEndToEnd</b><br>Test class: AirlineTests</td>
+<td title='AirlineTests.testDatabaseConnectionAndInitialData()'><b>testDatabaseConnectionAndInitialData</b><br>Test class: AirlineTests</td>
 <td><div><pre>com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
 
 The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
@@ -202,7 +202,7 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:199)
 	at DbUtils.getConnection(DbUtils.java:23)
 	at DbUtils.executeQuery(DbUtils.java:37)
-	at AirlineTests.testCreateBookingEndToEnd(AirlineTests.java:30)
+	at AirlineTests.testDatabaseConnectionAndInitialData(AirlineTests.java:14)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
 Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
 
@@ -226,8 +226,8 @@ Caused by: java.net.ConnectException: Connection refused: connect
 	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:144)
 	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:53)
 	... 41 more
-... Removed 32 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1075803699", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1075803699'><pre>com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+... Removed 32 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace664186542", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace664186542'><pre>com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
 
 The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
 	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:165)
@@ -240,7 +240,7 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:199)
 	at DbUtils.getConnection(DbUtils.java:23)
 	at DbUtils.executeQuery(DbUtils.java:37)
-	at AirlineTests.testCreateBookingEndToEnd(AirlineTests.java:30)
+	at AirlineTests.testDatabaseConnectionAndInitialData(AirlineTests.java:14)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
