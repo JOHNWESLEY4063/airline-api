@@ -18,6 +18,7 @@ public class AirlineTests {
         Assert.assertEquals(flightAA101.get("origin_airport_code"), "JFK", "Origin airport code should be JFK.");
         Assert.assertEquals(flightAA101.get("available_seats"), 180, "Available seats should be 180.");
         System.out.println("Test passed successfully!");
+
     }
 
     @Test

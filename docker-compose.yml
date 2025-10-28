@@ -7,16 +7,18 @@ services:
     container_name: airline-mysql-db
     restart: always
     environment:
-      # Use the same credentials as defined in your index.js and Spring Boot config
+      # These variables set up the initial database and user
       MYSQL_ROOT_PASSWORD: John@123
       MYSQL_DATABASE: airline_db
       MYSQL_USER: root
       MYSQL_PASSWORD: John@123
     ports:
-      # Expose the port for local debugging tools, if needed
-      - "3306:3306"
+      # **** CHANGE HERE ****
+      # Mapping host port 3307 to container port 3306.
+      # Your local MySQL still runs on 3306, Docker now uses 3307.
+      - "3307:3306"
     volumes:
-      # Persist the data outside the container to prevent loss
+      # Persist the data outside the container
       - db_data:/var/lib/mysql
 
 volumes:
