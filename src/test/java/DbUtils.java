@@ -7,19 +7,18 @@ import java.util.Map;
 public class DbUtils {
 
     private static Connection connection;
-
-    // --- CRITICAL UPDATE HERE: Port is now 3308 ---
-    private static final String DB_URL = "jdbc:mysql://mysql_db:3308/airline_db?allowPublicKeyRetrieval=true&useSSL=false";
-    // ----------------------------
+    // FINAL FIX: Use localhost and the custom mapped Docker port (3308)
+    private static final String DB_URL = "jdbc:mysql://localhost:3308/airline_db?allowPublicKeyRetrieval=true&useSSL=false";
 
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "John@123"; // Change this!
+    private static final String DB_PASSWORD = "John@123";
 
     public static Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()) {
             try {
-                System.out.println("Waiting for DB to be ready at mysql_db:3308...");
-                Thread.sleep(5000);
+                // Increased wait time for better reliability
+                System.out.println("Waiting for DB to be ready at localhost:3308...");
+                Thread.sleep(8000);
 
                 connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             } catch (SQLException e) {
@@ -32,8 +31,6 @@ public class DbUtils {
         }
         return connection;
     }
-
-    // ... (rest of the DbUtils class code remains the same)
 
     // This method is for SELECT queries
     public static List<Map<String, Object>> executeQuery(String query) throws SQLException {
@@ -60,7 +57,6 @@ public class DbUtils {
             return statement.executeUpdate(query);
         }
     }
-
 
     public static void closeConnection() throws SQLException {
         if (connection != null && !connection.isClosed()) {

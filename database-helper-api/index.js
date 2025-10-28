@@ -3,7 +3,7 @@ const mysql = require('mysql2/promise');
 const app = express();
 app.use(express.json());
 
-// --- IMPORTANT ---
+// --- FINAL CONFIGURATION ---
 // Node.js running on the host must connect to the Docker container via localhost
 // and the mapped external port (3308).
 const dbConfig = {
@@ -32,12 +32,10 @@ app.post('/query', async (req, res) => {
 
     try {
         const dbPool = await getPool();
-        // Use an empty array [] as the default for params for prepared statements
         const [rows] = await dbPool.execute(query, params || []);
         res.status(200).json(rows);
     } catch (error) {
         console.error('Database query failed:', error);
-        // Return error details to the client for debugging
         res.status(500).json({ error: 'Database query failed', details: error.message });
     }
 });
