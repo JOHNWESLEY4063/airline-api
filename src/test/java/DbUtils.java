@@ -8,9 +8,8 @@ public class DbUtils {
 
     private static Connection connection;
 
-    // --- CRITICAL UPDATE HERE ---
-    // The host is now the Docker service name 'mysql_db' and the port is 3307
-    private static final String DB_URL = "jdbc:mysql://mysql_db:3307/airline_db?allowPublicKeyRetrieval=true&useSSL=false";
+    // --- CRITICAL UPDATE HERE: Port is now 3308 ---
+    private static final String DB_URL = "jdbc:mysql://mysql_db:3308/airline_db?allowPublicKeyRetrieval=true&useSSL=false";
     // ----------------------------
 
     private static final String DB_USER = "root";
@@ -19,23 +18,22 @@ public class DbUtils {
     public static Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()) {
             try {
-                // --- ADDED: Wait time to ensure the Docker container is fully ready before connecting ---
-                System.out.println("Waiting for DB to be ready at mysql_db:3307...");
+                System.out.println("Waiting for DB to be ready at mysql_db:3308...");
                 Thread.sleep(5000);
-                // --------------------
 
                 connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             } catch (SQLException e) {
-                System.err.println("Database connection failed! Check if Docker container is running and port 3307 is available.");
+                System.err.println("Database connection failed! Check if Docker container is running and port 3308 is available.");
                 throw e;
             } catch (InterruptedException e) {
-                // This is for the Thread.sleep()
                 Thread.currentThread().interrupt();
                 throw new SQLException("Test was interrupted while waiting for DB.", e);
             }
         }
         return connection;
     }
+
+    // ... (rest of the DbUtils class code remains the same)
 
     // This method is for SELECT queries
     public static List<Map<String, Object>> executeQuery(String query) throws SQLException {
