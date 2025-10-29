@@ -9,10 +9,11 @@ import org.testng.ITestResult;
 
 public class ExtentReportListener implements ITestListener {
     private ExtentReports extent;
-    private ExtentTest test;
+    private static final ThreadLocal<ExtentTest> testLocal = new ThreadLocal<>();
 
     @Override
     public void onStart(ITestContext context) {
+        System.out.println("✅ ExtentReportListener: Initializing report at target/ExtentReport.html");
         ExtentSparkReporter spark = new ExtentSparkReporter("target/ExtentReport.html");
         extent = new ExtentReports();
         extent.attachReporter(spark);
@@ -20,22 +21,36 @@ public class ExtentReportListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult result) {
-        test = extent.createTest(result.getMethod().getMethodName());
+        ExtentTest test = extent.createTest(result.getMethod().getMethodName());
+        testLocal.set(test);
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
-        test.pass("Test passed");
+        ExtentTest test = testLocal.get();
+        if (test != null) {
+            test.pass("Test passed");
+        }
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        test.fail("Test failed");
-        test.fail(result.getThrowable());
+        ExtentTest test = testLocal.get();
+        if (test != null) {
+            test.fail("Test failed: " + result.getThrowable().getMessage());
+            test.fail(result.getThrowable());
+        }
     }
 
     @Override
     public void onFinish(ITestContext context) {
-        extent.flush();
+        if (extent != null) {
+            try {
+                extent.flush();
+                System.out.println("✅ ExtentReportListener: Report successfully written to target/ExtentReport.html");
+            } catch (Exception e) {
+                System.err.println("❌ Failed to flush Extent Report: " + e.getMessage());
+            }
+        }
     }
 }
