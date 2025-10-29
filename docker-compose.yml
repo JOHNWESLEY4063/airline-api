@@ -1,21 +1,20 @@
 version: '3.8'
-
 services:
-  # 1. MySQL Database Container (System of Record)
   mysql_db:
     image: mysql:8.0
     container_name: airline-mysql-db
-    restart: always
     environment:
+      # CRITICAL: This password must match the one in your DbUtils.java
       MYSQL_ROOT_PASSWORD: John@123
       MYSQL_DATABASE: airline_db
-      MYSQL_USER: root
-      MYSQL_PASSWORD: John@123
+    # Maps the container's internal port 3306 to the host's port 3308
+    # The 'host.docker.internal' address will correctly map back to the host machine's network
+    # where the container is running.
     ports:
-      # **** CRITICAL CHANGE: Using port 3308 on the host machine ****
       - "3308:3306"
     volumes:
-      # Persist the data outside the container
+      # Optional: Mount your SQL initialization script here if needed
+      # - ./init-db:/docker-entrypoint-initdb.d
       - db_data:/var/lib/mysql
 
 volumes:
