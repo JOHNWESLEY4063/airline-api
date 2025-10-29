@@ -40,8 +40,8 @@ pipeline {
                     archiveArtifacts artifacts: 'postman/newman-html-report/*.html', allowEmptyArchive: true
 
                     echo 'Stopping background Node.js Helper API process...'
-                    // FIXED: Properly escaped and safe cleanup command for Windows
-                    bat "FOR /F \"tokens=5\" %i IN ('netstat -ano ^| findstr :3001') DO TaskKill /PID %i /F || exit 0"
+                    // ✅ FIXED: Safe, reliable cleanup using PowerShell (Windows)
+                    bat 'powershell -Command "Get-NetTCPConnection -LocalPort 3001 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }"'
                 }
             }
         }
@@ -66,8 +66,8 @@ pipeline {
             archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: false
         }
         always {
-            // Final safety cleanup (in case stage 4 cleanup was skipped)
-            bat "FOR /F \"tokens=5\" %i IN ('netstat -ano ^| findstr :3001') DO TaskKill /PID %i /F || exit 0"
+            // Final cleanup (in case stage 4 was skipped)
+            bat 'powershell -Command "Get-NetTCPConnection -LocalPort 3001 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }"'
         }
     }
 }
