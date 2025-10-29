@@ -3,10 +3,11 @@ const mysql = require('mysql2/promise');
 const app = express();
 app.use(express.json());
 
-// FINAL CONFIGURATION: Node.js running on the host connects via localhost:3308
+// CORRECTED CONFIGURATION: Set host and port to connect to the local MySQL Workspace (port 3306).
+// Using the specific host IP (10.4.5.160) for reliability, as confirmed by the successful Java tests.
 const dbConfig = {
-    host: 'localhost',
-    port: 3308, // The port mapped in docker-compose.yml
+    host: '10.4.5.160', // MUST be the host IP address where your MySQL server is installed
+    port: 3306,        // Standard MySQL port for your local workspace instance
     user: 'root',
     password: 'John@123',
     database: 'airline_db'
@@ -34,6 +35,7 @@ app.post('/query', async (req, res) => {
         res.status(200).json(rows);
     } catch (error) {
         console.error('Database query failed:', error);
+        // The previous "Table doesn't exist" error must be solved by running your schema script in MySQL Workbench.
         res.status(500).json({ error: 'Database query failed', details: error.message });
     }
 });
