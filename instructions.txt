@@ -1,7 +1,4 @@
-C:\Users\peram\airline-project\database-helper-api
+cd database-helper-api
+docker build -t helper-api .
 
-docker build -t helper-api:v1 .
-
-docker run -d -p 3001:3001 --name airline-helper helper-api:v1
-
-docker run -d -p 3001:3001 --name airline-helper helper-api:v1
+docker run -d -p 3001:3001 --name helper-container helper-api

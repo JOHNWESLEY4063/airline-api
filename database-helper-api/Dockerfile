@@ -1,18 +1,20 @@
-# Stage 1: Define the base image (Node 16 LTS)
+# Use lightweight Node.js LTS image
 FROM node:16-alpine
 
-# Set the working directory inside the container
-WORKDIR /usr/src/app
+# Set working directory inside container
+WORKDIR /app
 
-# Copy package.json and install dependencies (for caching efficiency)
+# Copy package files
 COPY package*.json ./
+
+# Install dependencies
 RUN npm install
 
-# Copy the rest of the application code
-COPY .. .
+# Copy all source code
+COPY . .
 
-# Expose the port used by the Node.js API (3001, as per your Postman environment)
+# Expose the port your API uses
 EXPOSE 3001
 
-# Command to run the application when the container starts
-CMD [ "node", "index.js" ]
+# Start the server
+CMD ["node", "index.js"]

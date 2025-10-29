@@ -2,20 +2,20 @@
 <testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-10-29T16:14:36 IST" name="Airline Test Suite" finished-at="2025-10-29T16:14:37 IST" duration-ms="789">
+  <suite started-at="2025-10-29T20:49:14 IST" name="Airline Test Suite" finished-at="2025-10-29T20:49:14 IST" duration-ms="486">
     <groups>
     </groups>
-    <test started-at="2025-10-29T16:14:36 IST" name="Database Validation Tests" finished-at="2025-10-29T16:14:37 IST" duration-ms="789">
+    <test started-at="2025-10-29T20:49:14 IST" name="Database Validation Tests" finished-at="2025-10-29T20:49:14 IST" duration-ms="486">
       <class name="AirlineTests">
-        <test-method signature="testCreateBookingEndToEnd()[pri:0, instance:AirlineTests@14d3bc22]" started-at="2025-10-29T16:14:36 IST" name="testCreateBookingEndToEnd" finished-at="2025-10-29T16:14:37 IST" duration-ms="433" status="PASS">
+        <test-method signature="testCreateBookingEndToEnd()[pri:0, instance:AirlineTests@14d3bc22]" started-at="2025-10-29T20:49:14 IST" name="testCreateBookingEndToEnd" finished-at="2025-10-29T20:49:14 IST" duration-ms="259" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testCreateBookingEndToEnd -->
-        <test-method signature="testDatabaseConnectionAndInitialData()[pri:0, instance:AirlineTests@14d3bc22]" started-at="2025-10-29T16:14:37 IST" name="testDatabaseConnectionAndInitialData" finished-at="2025-10-29T16:14:37 IST" duration-ms="6" status="PASS">
+        <test-method signature="testDatabaseConnectionAndInitialData()[pri:0, instance:AirlineTests@14d3bc22]" started-at="2025-10-29T20:49:14 IST" name="testDatabaseConnectionAndInitialData" finished-at="2025-10-29T20:49:14 IST" duration-ms="2" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- testDatabaseConnectionAndInitialData -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:AirlineTests@14d3bc22]" started-at="2025-10-29T16:14:37 IST" name="tearDown" finished-at="2025-10-29T16:14:37 IST" duration-ms="28" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:AirlineTests@14d3bc22]" started-at="2025-10-29T20:49:14 IST" name="tearDown" finished-at="2025-10-29T20:49:14 IST" duration-ms="13" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
