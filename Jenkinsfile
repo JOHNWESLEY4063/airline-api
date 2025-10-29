@@ -24,11 +24,10 @@ pipeline {
                 echo 'Building and starting Node.js Helper API...'
                 // Change to the Node.js directory to run commands
                 dir('database-helper-api') {
-                    // Command: npm install
-                    bat 'npm install'
-                    // Command: node index.js (Starts the server in the background)
-                    // Note: 'start /B' is used for a non-blocking background process on Windows.
-                    bat 'start /B node index.js'
+                    // Use Docker commands for the polyglot service
+                    bat 'docker build -t helper-api:v1 .'
+                    // Run container and expose port 3001
+                    bat 'docker run -d -p 3001:3001 --name airline-helper helper-api:v1'
                 }
 
                 // CRITICAL: Health Check Loop (as discussed in the report and interview prep)
@@ -47,10 +46,10 @@ pipeline {
                     bat 'newman run "Airline Reservation API.json" -e "Airline Local DB.json" -r cli,htmlextra'
                 }
 
-                // Stop the Node.js server started in Stage 3
-                echo 'Stopping Node.js Helper API process...'
-                // Find the process running on port 3001 and kill it (Advanced Cleanup)
-                bat 'FOR /F "tokens=5" %%i IN (\'netstat -ano ^| findstr :3001\') DO (TaskKill /PID %%i /F)'
+                // Stop the Node.js container started in Stage 3
+                echo 'Stopping Node.js Helper API container...'
+                bat 'docker stop airline-helper'
+                bat 'docker rm airline-helper' // Clean up the container instance
             }
             post {
                 // Archive Newman report even if API tests fail (Failure box in workflow)
@@ -79,14 +78,22 @@ pipeline {
     }
 
     post {
-        // --- STAGE 6: ARCHIVE ARTIFACTS ---
+        // --- ARCHIVE ARTIFACTS and CLEANUP ---
         success {
             echo 'Pipeline Succeeded! Archiving final build artifact (JAR file)...'
             // Archive the final executable JAR file
             archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: false
         }
-        failure {
-            echo 'Pipeline failed. Check build logs and test reports.'
+        always {
+            echo 'Archiving final test results...'
+            // Archive the beautiful Extent Report (Re-archiving for visibility)
+            archiveArtifacts artifacts: 'target/ExtentReport.html', allowEmptyArchive: true
+
+            echo 'Cleaning up any potentially running containers...'
+            // Clean up the Node.js container (redundant but safe after stage 4 cleanup)
+            // If the remote branch was using docker-compose down, this is where that logic would go.
+            // Using the Node.js specific cleanup here to ensure the environment is clean.
+            bat 'docker rm -f airline-helper'
         }
     }
 }

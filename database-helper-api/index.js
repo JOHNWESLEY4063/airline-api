@@ -3,12 +3,12 @@ const mysql = require('mysql2/promise');
 const app = express();
 app.use(express.json());
 
-// --- IMPORTANT ---
-// Make sure the password matches the one you set for your MySQL root user.
+// FINAL CONFIGURATION: Node.js running on the host connects via localhost:3308
 const dbConfig = {
     host: 'localhost',
+    port: 3308, // The port mapped in docker-compose.yml
     user: 'root',
-    password: 'John@123', // Change this if your password is different
+    password: 'John@123',
     database: 'airline_db'
 };
 
@@ -30,7 +30,6 @@ app.post('/query', async (req, res) => {
 
     try {
         const dbPool = await getPool();
-        // The fix is here: Use an empty array [] as the default for params.
         const [rows] = await dbPool.execute(query, params || []);
         res.status(200).json(rows);
     } catch (error) {

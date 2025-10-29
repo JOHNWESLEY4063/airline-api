@@ -7,26 +7,24 @@ import java.util.Map;
 public class DbUtils {
 
     private static Connection connection;
-    private static final String DB_URL = "jdbc:mysql://10.4.5.160:3306/airline_db?allowPublicKeyRetrieval=true&useSSL=false";
+    // FINAL FIX: Using host.docker.internal to reliably route from Maven/Java to the Docker host
+    private static final String DB_URL = "jdbc:mysql://host.docker.internal:3308/airline_db?allowPublicKeyRetrieval=true&useSSL=false";
 
     private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "John@123"; // Change this!
+    private static final String DB_PASSWORD = "John@123";
 
     public static Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()) {
             try {
-                // --- ADD THIS BLOCK ---
-                // Wait for 5 seconds to give the DB time to initialize
-                System.out.println("Waiting for DB to be ready...");
-                Thread.sleep(5000);
-                // --------------------
+                // Increased wait time for better reliability
+                System.out.println("Waiting for DB to be ready at host.docker.internal:3308...");
+                Thread.sleep(8000);
 
                 connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             } catch (SQLException e) {
-                System.err.println("Database connection failed!");
+                System.err.println("Database connection failed! Check if Docker container is running and port 3308 is available.");
                 throw e;
             } catch (InterruptedException e) {
-                // This is for the Thread.sleep()
                 Thread.currentThread().interrupt();
                 throw new SQLException("Test was interrupted while waiting for DB.", e);
             }
@@ -53,14 +51,12 @@ public class DbUtils {
         }
     }
 
-    // --- NEW METHOD ---
     // This method is for INSERT, UPDATE, or DELETE queries
     public static int executeUpdate(String query) throws SQLException {
         try (Statement statement = getConnection().createStatement()) {
             return statement.executeUpdate(query);
         }
     }
-
 
     public static void closeConnection() throws SQLException {
         if (connection != null && !connection.isClosed()) {
