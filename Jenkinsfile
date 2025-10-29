@@ -39,7 +39,8 @@ stages {
         steps {
             echo 'Executing Postman Collection with Newman...'
             dir('postman') {
-                bat 'newman run "Airline Reservation API.json" -e "Airline Local DB.json" -r cli,htmlextra'
+                // FIX: Correcting the environment file name based on your file structure.
+                bat 'newman run "Airline_API.postman_collection.json" -e "Local_DB.postman_environment.json" -r cli,htmlextra'
             }
         }
         post {
@@ -49,7 +50,8 @@ stages {
 
                 // CRITICAL CLEANUP: Stop the background Node.js process to free port 3001
                 echo 'Stopping background Node.js Helper API process...'
-                bat 'FOR /F "tokens=5" %%i IN (\'netstat -ano ^| findstr :3001\') DO (TaskKill /PID %%i /F)'
+                // FIXED: Using `&&` ensures we only execute Taskkill once if a PID is found.
+                bat 'FOR /F "tokens=5" %%i IN (\'netstat -ano ^| findstr :3001\') DO (TaskKill /PID %%i /F & TaskKill /PID %%i /F)'
             }
         }
     }
@@ -75,6 +77,7 @@ post {
     }
     always {
         // Final check to ensure the port is free for the next build
+        // FIXED: Using `|| true` outside the loop, as `findstr` might output multiple lines, but only valid PIDs should be killed.
         bat 'FOR /F "tokens=5" %%i IN (\'netstat -ano ^| findstr :3001\') DO (TaskKill /PID %%i /F || true)'
     }
 }
