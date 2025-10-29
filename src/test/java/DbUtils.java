@@ -7,8 +7,9 @@ import java.util.Map;
 public class DbUtils {
 
     private static Connection connection;
-    // FINAL FIX: Using host.docker.internal to reliably route from Maven/Java to the Docker host
-    private static final String DB_URL = "jdbc:mysql://host.docker.internal:3308/airline_db?allowPublicKeyRetrieval=true&useSSL=false";
+    // FINAL FIX: Reverting to the local IP (10.4.5.160) and standard port (3306)
+    // to connect to the manually running MySQL Workspace instance.
+    private static final String DB_URL = "jdbc:mysql://10.4.5.160:3306/airline_db?allowPublicKeyRetrieval=true&useSSL=false";
 
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "John@123";
@@ -16,17 +17,14 @@ public class DbUtils {
     public static Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()) {
             try {
-                // Increased wait time for better reliability
-                System.out.println("Waiting for DB to be ready at host.docker.internal:3308...");
-                Thread.sleep(8000);
+                // REMOVED: Thread.sleep(8000) is no longer needed since the local MySQL instance is assumed to be running.
+                System.out.println("Waiting for DB to be ready...");
 
                 connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
             } catch (SQLException e) {
-                System.err.println("Database connection failed! Check if Docker container is running and port 3308 is available.");
+                // Updated message to reflect expected local environment
+                System.err.println("Database connection failed! Check if MySQL server is running on 10.4.5.160:3306.");
                 throw e;
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                throw new SQLException("Test was interrupted while waiting for DB.", e);
             }
         }
         return connection;
