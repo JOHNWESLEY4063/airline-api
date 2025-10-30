@@ -9,7 +9,7 @@ public class DbUtils {
     private static Connection connection;
     // FINAL FIX: Reverting to the local IP (10.4.5.160) and standard port (3306)
     // to connect to the manually running MySQL Workspace instance.
-    private static final String DB_URL = "jdbc:mysql://10.4.5.160:3306/airline_db?allowPublicKeyRetrieval=true&useSSL=false";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/airline_db?allowPublicKeyRetrieval=true&useSSL=false";
 
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "John@123";
